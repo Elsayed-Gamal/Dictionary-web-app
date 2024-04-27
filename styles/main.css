@@ -1,3 +1,5 @@
+/* Main page classes */
+
 body {
   color: #2d2d2d;
   background-color: #fff;
@@ -8,6 +10,8 @@ body {
   width: 737px;
   margin: 0 auto;
 }
+
+/* Header classes */
 
 .main-header {
   display: flex;
@@ -147,7 +151,7 @@ body {
   transition: all 0.5s;
 }
 
-/* Framework */
+/* Font options classes */
 
 .hidden {
   display: none;
