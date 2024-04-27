@@ -1,0 +1,1 @@
+1- استحدمت Event Delegation عشان اعمل handle لكل ال clicks اللي عايزها في الصفحة عن طريق EventListner واحد بس على الصفحة كلها عشان الاداء
