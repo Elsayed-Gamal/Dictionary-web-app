@@ -4,6 +4,7 @@ const toggleDarkModeBtn = document.querySelector('.toggle-btn');
 const fontOptions = document.querySelector('.font-options');
 const arrowDown = document.querySelector('.select-box svg');
 const fontSelected = document.querySelector('.font-selected');
+const searchForm = document.querySelector('.search-section form');
 
 // Function that handle dark mode option
 const toggleDarkMode = function (e) {
@@ -22,6 +23,9 @@ const handleClicks = function (e) {
   // console.log(e.target);
   // Handle fonts menu and the font that user selected
   handleFontSelect(e);
+
+  // Submit the form when clicking the search icon
+  handleSearchBtn(e);
 };
 
 // Function that handle fonts menu and the font that user selected
@@ -50,8 +54,33 @@ const handleFontSelect = function (e) {
   }
 };
 
+// Function that submit the form when clicking the search icon
+const handleSearchBtn = function (e) {
+  if (e.target === document.querySelector('.search-section svg')) {
+    searchForm.submit();
+  }
+};
+
+// Fetch and render word data from api
+const fetchRenderApiData = async function (e) {
+  try {
+    e.preventDefault();
+    const word = searchForm.querySelector("input[type='text']").value;
+    const response = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
+    const [data] = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Listen to click events on all page
 document.addEventListener('click', handleClicks);
 
 // Listen to toggle button event to launch dark mode or disable it
 toggleDarkModeBtn.addEventListener('change', toggleDarkMode);
+
+// Listen to form submit
+searchForm.addEventListener('submit', fetchRenderApiData);
