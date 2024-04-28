@@ -5,6 +5,7 @@ const fontOptions = document.querySelector('.font-options');
 const arrowDown = document.querySelector('.select-box svg');
 const fontSelected = document.querySelector('.font-selected');
 const searchForm = document.querySelector('.search-section form');
+const errMsg = document.querySelector('.error-message');
 
 // Function that handle dark mode option
 const toggleDarkMode = function (e) {
@@ -72,7 +73,7 @@ const fetchRenderApiData = async function (e) {
     const [data] = await response.json();
     console.log(data);
   } catch (error) {
-    console.log(error);
+    errMsg.classList.remove('hidden');
   }
 };
 
