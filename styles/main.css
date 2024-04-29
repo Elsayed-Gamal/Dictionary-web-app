@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  width: 737px;
+  max-width: 737px;
   margin: 0 auto;
 }
 
@@ -175,6 +175,7 @@ body {
 
 .api-data {
   margin-top: 45px;
+  margin-bottom: 125px;
 }
 
 .data-fetched {
@@ -206,18 +207,24 @@ body {
   cursor: pointer;
 }
 
+.data-header .sound-icon:hover circle {
+  opacity: 1;
+}
+
+.data-header .sound-icon:hover path {
+  fill: #fff;
+}
+
 .meaning-container {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   gap: 40px;
-  margin-bottom: 40px; */
 }
 
 .meaning {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin-bottom: 40px;
 }
 
 .meaning-header {
@@ -260,6 +267,12 @@ body {
   position: relative;
 }
 
+.meanings .definition .example {
+  margin-left: 25px;
+  margin-top: 13px;
+  color: #757575;
+}
+
 .meanings .definition p::before {
   content: '';
   width: 5px;
@@ -280,6 +293,42 @@ body {
   margin-left: 22px;
   color: #a445ed;
   font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.source {
+  font-size: 14px;
+  color: #757575;
+  height: 37px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.source::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #e9e9e9;
+  position: absolute;
+  top: 0;
+}
+
+.source p {
+  text-decoration: underline;
+  text-decoration-color: #757575;
+}
+
+.source a {
+  margin-left: 20px;
+  color: #2d2d2d;
+  text-decoration-color: #757575;
+}
+
+.source svg {
+  margin-left: 9px;
+  margin-bottom: 2px;
 }
 
 /* Error message section */
@@ -327,6 +376,10 @@ body {
 
 .dark-mode .search-section input[type='text'] {
   background-color: #1f1f1f;
+  color: #fff;
+}
+
+.dark-mode .source a {
   color: #fff;
 }
 

@@ -73,6 +73,10 @@ const fetchRenderApiData = async function (e) {
     const [data] = await response.json();
     console.log(data);
 
+    if (document.querySelector('.data-fetched')) {
+      document.querySelector('.data-fetched').remove();
+    }
+    errMsg.classList.add('hidden');
     const dataFetched = `
       <div class="data-fetched">
         <header class="data-header">
@@ -94,6 +98,7 @@ const fetchRenderApiData = async function (e) {
         <div class="meaning-container">
           
         </div>
+        <div class="source"><p>Source</p><a href="${data.sourceUrls}">${data.sourceUrls}</a><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path fill="none" stroke="#838383" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"/></svg></div>
       </div>
     `;
 
@@ -101,38 +106,66 @@ const fetchRenderApiData = async function (e) {
       .querySelector('.api-data')
       .insertAdjacentHTML('beforeend', dataFetched);
 
-    data.meanings.forEach(meaning => {
+    data.meanings.forEach((meaning, meaningIndex) => {
       const meanings = `
-        <div class="meaning-header">
-          <h3>${meaning.partOfSpeech}</h3>
-          <div class="meaning-line"></div>
-        </div>
-        <div class="meanings">
-          <p class="meaning-word">Meaning</p>
-        </div>
-        <div class="synonyms">
-          Synonyms <span>electronic keyboard</span>
+        <div class="meaning meaning-${meaningIndex}">
+          <div class="meaning-header">
+            <h3>${meaning.partOfSpeech}</h3>
+            <div class="meaning-line"></div>
+          </div>
+          <div class="meanings meanings-${meaningIndex}">
+            <p class="meaning-word">Meaning</p>
+            <div class="definitions">
+                    
+            </div>
+          </div>
+          
         </div>
     `;
+
+      const synonyms = `
+        <div class="synonyms">
+          Synonyms <span>${meaning.synonyms}</span>
+        </div>`;
+
       document
         .querySelector('.meaning-container')
         .insertAdjacentHTML('beforeend', meanings);
 
-      meaning.definitions.forEach(definition => {
-        const definitions = `
-      <div class="meaning">
-        <p>
-          ${definition.definition}
-        </p>
-      </div>
-      `;
+      if (meaning.synonyms.length > 0) {
         document
-          .querySelector(`.meanings`)
+          .querySelector(`.meaning-${meaningIndex}`)
+          .insertAdjacentHTML('beforeend', synonyms);
+      }
+
+      meaning.definitions.forEach((definition, definitionIndex) => {
+        const definitions = `
+          <div class="definition definition-${definitionIndex}">
+            <p>
+              ${definition.definition}
+            </p>
+          </div>
+      `;
+
+        const example = `<div class="example">“${definition.example}”</div>`;
+        document
+          .querySelector(`.meanings-${meaningIndex}`)
           .insertAdjacentHTML('beforeend', definitions);
+
+        if (definition.example) {
+          document
+            .querySelector(
+              `.meanings-${meaningIndex} .definition-${definitionIndex}`
+            )
+            .insertAdjacentHTML('beforeend', example);
+        }
       });
     });
   } catch (error) {
     console.log(error);
+    if (document.querySelector('.data-fetched')) {
+      document.querySelector('.data-fetched').remove();
+    }
     errMsg.classList.remove('hidden');
   }
 };
