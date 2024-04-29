@@ -171,11 +171,118 @@ body {
   cursor: pointer;
 }
 
-/* Error message section */
+/* Data fetched */
 
 .api-data {
   margin-top: 45px;
 }
+
+.data-fetched {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.data-header {
+  height: 114px;
+  position: relative;
+}
+
+.data-header h1 {
+  font-size: 64px;
+  margin-bottom: 8px;
+}
+
+.data-header p {
+  font-size: 24px;
+  color: #a445ed;
+}
+
+.data-header .sound-icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.meaning-container {
+  /* display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px; */
+}
+
+.meaning {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.meaning-header {
+  position: relative;
+}
+
+.meaning-header h3 {
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.meaning-line {
+  width: 656px;
+  height: 1px;
+  background-color: #e9e9e9;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.meanings .meaning-word {
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: #757575;
+}
+
+.meanings .definition {
+  margin-bottom: 13px;
+  font-size: 18px;
+  line-height: 24px;
+  margin-left: 22px;
+}
+
+.meanings .definition p {
+  /* display: inline-block; */
+  margin-left: 25px;
+  width: 689px;
+  position: relative;
+}
+
+.meanings .definition p::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #8f19e8;
+  position: absolute;
+  top: 10px;
+  left: -25px;
+}
+
+.synonyms {
+  font-size: 20px;
+  color: #757575;
+}
+
+.synonyms span {
+  margin-left: 22px;
+  color: #a445ed;
+  font-weight: bold;
+}
+
+/* Error message section */
 
 .error-message {
   height: 204px;

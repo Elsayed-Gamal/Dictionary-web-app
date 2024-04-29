@@ -58,7 +58,7 @@ const handleFontSelect = function (e) {
 // Function that submit the form when clicking the search icon
 const handleSearchBtn = function (e) {
   if (e.target === document.querySelector('.search-section svg')) {
-    searchForm.submit();
+    fetchRenderApiData(e);
   }
 };
 
@@ -72,7 +72,67 @@ const fetchRenderApiData = async function (e) {
     );
     const [data] = await response.json();
     console.log(data);
+
+    const dataFetched = `
+      <div class="data-fetched">
+        <header class="data-header">
+          <h1>${data.word}</h1>
+          <p class="phonetic">${data.phonetic}</p>
+          <svg
+            class="sound-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="75"
+            height="75"
+            viewBox="0 0 75 75"
+          >
+            <g fill="#A445ED" fill-rule="evenodd">
+              <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
+              <path d="M29 27v21l21-10.5z" />
+            </g>
+          </svg>
+        </header>
+        <div class="meaning-container">
+          
+        </div>
+      </div>
+    `;
+
+    document
+      .querySelector('.api-data')
+      .insertAdjacentHTML('beforeend', dataFetched);
+
+    data.meanings.forEach(meaning => {
+      const meanings = `
+        <div class="meaning-header">
+          <h3>${meaning.partOfSpeech}</h3>
+          <div class="meaning-line"></div>
+        </div>
+        <div class="meanings">
+          <p class="meaning-word">Meaning</p>
+        </div>
+        <div class="synonyms">
+          Synonyms <span>electronic keyboard</span>
+        </div>
+    `;
+      document
+        .querySelector('.meaning-container')
+        .insertAdjacentHTML('beforeend', meanings);
+
+      meaning.definitions.forEach(definition => {
+        const definitions = `
+      <div class="meaning">
+        <p>
+          ${definition.definition}
+        </p>
+      </div>
+      `;
+        document
+          .querySelector(`.meanings`)
+          .insertAdjacentHTML('beforeend', definitions);
+      });
+    });
   } catch (error) {
+    console.log(error);
     errMsg.classList.remove('hidden');
   }
 };
