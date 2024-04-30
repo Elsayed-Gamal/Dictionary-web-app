@@ -400,3 +400,116 @@ body {
 .mono {
   font-family: 'Inconsolata', monospace;
 }
+
+/* TODO: responive design */
+
+@media (max-width: 768px) {
+  body {
+    padding: 0 24px;
+  }
+
+  .meanings .definition {
+    width: 327px;
+    line-break: auto;
+    margin-left: 0;
+  }
+
+  .meanings .definition p {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    padding: 0 24px;
+  }
+
+  .main-header {
+    margin-top: 24px;
+  }
+
+  .options {
+    gap: 16px;
+  }
+
+  .select-box {
+    font-size: 14px;
+    width: 98px;
+  }
+
+  .font-selected {
+    width: 98px;
+  }
+
+  .font-options {
+    width: 140px;
+    height: 135px;
+  }
+
+  .search-section input[type='text'] {
+    font-size: 16px;
+  }
+
+  .data-header {
+    height: 68px;
+  }
+
+  .data-header h1 {
+    font-size: 32px;
+  }
+
+  .data-header p {
+    font-size: 18px;
+  }
+
+  .data-header .sound-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .meaning-line {
+    width: 266px;
+  }
+
+  .meaning-header h3 {
+    font-size: 18px;
+  }
+
+  .meanings .meaning-word {
+    font-size: 16px;
+  }
+
+  .meanings .definition {
+    font-size: 15px;
+  }
+
+  .meanings .definition p {
+    max-width: 375px;
+  }
+
+  .synonyms {
+    font-size: 16px;
+  }
+
+  .source {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 281px;
+    height: 42px;
+  }
+
+  .source a {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .source svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .source::before {
+    top: -24px;
+  }
+}
