@@ -72,12 +72,19 @@ const handleSearchBtn = function (e) {
 const fetchRenderApiData = async function (e) {
   try {
     e.preventDefault();
+    if (!searchForm.querySelector("input[type='text']").value) {
+      searchForm.closest('.search-section').classList.add('not-valid');
+      return;
+    }
+
+    if (searchForm.querySelector("input[type='text']").value) {
+      searchForm.closest('.search-section').classList.remove('not-valid');
+    }
     const word = searchForm.querySelector("input[type='text']").value;
     const response = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
     );
     const [data] = await response.json();
-    console.log(data);
 
     if (document.querySelector('.data-fetched')) {
       document.querySelector('.data-fetched').remove();

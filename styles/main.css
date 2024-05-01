@@ -171,6 +171,24 @@ body {
   cursor: pointer;
 }
 
+.search-section.not-valid input[type='text'] {
+  border: 1px solid #ff5252;
+  position: relative;
+}
+
+.search-section.not-valid::after {
+  content: 'Whoops, can’t be empty…';
+  position: absolute;
+  bottom: -32px;
+  left: 0;
+  font-size: 20px;
+  color: #ff5252;
+}
+
+.search-section.not-valid input[type='text']:focus-visible {
+  outline: none;
+}
+
 /* Data fetched */
 
 .api-data {
@@ -238,7 +256,8 @@ body {
 }
 
 .meaning-line {
-  width: 656px;
+  /* width: 656px; */
+  width: 81%;
   height: 1px;
   background-color: #e9e9e9;
   position: absolute;
@@ -456,6 +475,10 @@ body {
     font-size: 16px;
   }
 
+  .search-section.not-valid::after {
+    font-size: 16px;
+  }
+
   .data-header {
     height: 68px;
   }
@@ -474,7 +497,7 @@ body {
   }
 
   .meaning-line {
-    width: 266px;
+    width: 81%;
   }
 
   .meaning-header h3 {
