@@ -309,11 +309,13 @@ body {
 }
 
 .synonyms span {
+  width: calc(100% - 22px);
   margin-left: 22px;
   color: #a445ed;
   font-weight: bold;
   cursor: pointer;
   text-decoration: underline;
+  line-break: anywhere;
 }
 
 .source {
