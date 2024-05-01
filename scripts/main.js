@@ -6,6 +6,7 @@ const arrowDown = document.querySelector('.select-box svg');
 const fontSelected = document.querySelector('.font-selected');
 const searchForm = document.querySelector('.search-section form');
 const errMsg = document.querySelector('.error-message');
+let audio;
 
 // Function that handle dark mode option
 const toggleDarkMode = function (e) {
@@ -27,6 +28,11 @@ const handleClicks = function (e) {
 
   // Submit the form when clicking the search icon
   handleSearchBtn(e);
+
+  // Play sound when pressind soun
+  if (e.target.closest('.sound-icon')) {
+    audio.play();
+  }
 };
 
 // Function that handle fonts menu and the font that user selected
@@ -81,7 +87,9 @@ const fetchRenderApiData = async function (e) {
       <div class="data-fetched">
         <header class="data-header">
           <h1>${data.word}</h1>
-          <p class="phonetic">${data.phonetic}</p>
+          <p class="phonetic">${
+            data.phonetics[data.phonetics.length - 1].text
+          }</p>
           <svg
             class="sound-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -98,13 +106,17 @@ const fetchRenderApiData = async function (e) {
         <div class="meaning-container">
           
         </div>
-        <div class="source"><p>Source</p><a href="${data.sourceUrls}">${data.sourceUrls}</a><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path fill="none" stroke="#838383" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"/></svg></div>
+        <div class="source"><p>Source</p><a href="${data.sourceUrls}">${
+      data.sourceUrls
+    }</a><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path fill="none" stroke="#838383" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"/></svg></div>
       </div>
     `;
 
     document
       .querySelector('.api-data')
       .insertAdjacentHTML('beforeend', dataFetched);
+
+    audio = new Audio(`${data.phonetics[data.phonetics.length - 1].audio}`);
 
     data.meanings.forEach((meaning, meaningIndex) => {
       const meanings = `
