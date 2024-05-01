@@ -401,7 +401,7 @@ body {
   font-family: 'Inconsolata', monospace;
 }
 
-/* TODO: responive design */
+/* responive design */
 
 @media (max-width: 768px) {
   body {
@@ -409,13 +409,19 @@ body {
   }
 
   .meanings .definition {
-    width: 327px;
     line-break: auto;
     margin-left: 0;
   }
 
   .meanings .definition p {
     max-width: 768px;
+    width: calc(100% - 25px);
+  }
+}
+
+@media (max-width: 450px) {
+  .data-header h1 {
+    font-size: 44px;
   }
 }
 
